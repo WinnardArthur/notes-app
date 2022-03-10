@@ -1,0 +1,69 @@
+.create > h1 {
+    text-align: center;
+    margin-top: 1rem;
+}
+
+.createForm {
+    box-shadow: 0 0 10px -8px rgba(0, 0, 0, .5);
+    width: 80%;
+    margin: 0 auto;
+    padding: 1rem;
+    margin-top: 3rem;
+}
+
+.createForm > .form-group {
+    margin-bottom: 2rem;
+}
+
+.createForm > .form-group > label {
+    display: block;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.createForm > .form-group > input, textarea {
+    padding: .8rem .8rem;
+    border-bottom: 1px solid gray;
+    width: 97%;
+    font-size: 1rem;
+    margin-left: 1%;
+    resize: none;
+}
+
+.createForm > .form-group > textarea {
+    min-height: 15rem;
+    padding: 2rem 1rem;
+}
+
+.createForm > .form-group > input::placeholder {
+    color: gray;
+    font-size: 1rem;
+}
+
+.createForm .createNoteBtn {
+    background-color: teal;
+    display: inline-block;
+    padding: 0.8rem 1.2rem;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+    font-size: .92rem;
+}
+
+.createForm .resetFieldsBtn {
+    margin-left: 3rem;
+    background-color: indianred;
+}
+
+.show-content > h1 {
+    text-align: center;
+    margin: 2rem 0rem 1rem;
+}
+.show-content > div {
+    background-color: rgba(240, 240, 240, .5);
+    padding: 1rem;
+    min-height: 10rem;
+}

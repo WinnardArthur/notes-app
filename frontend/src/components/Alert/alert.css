@@ -1,0 +1,14 @@
+.alert {
+    width: 100%;
+    padding: .8rem;
+}
+
+.error {
+    background-color: tomato;
+    color: white;
+}
+
+.success {
+    background-color: rgb(90, 153, 90);
+    color: white;
+}
