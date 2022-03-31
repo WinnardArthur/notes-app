@@ -1,6 +1,5 @@
 import "./homePage.css";
 import { Link } from 'react-router-dom';
-import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 

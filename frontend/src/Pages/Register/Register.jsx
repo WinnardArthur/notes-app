@@ -6,7 +6,7 @@ import { registerUser } from '../../Redux/apiCalls';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 
-const Register = () => {
+const Register = ({setUserId}) => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -18,9 +18,10 @@ const Register = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const userRegister  = useSelector((state) => state.user) 
-    const { loading, error } = userRegister;
+    const RegisterUser  = useSelector((state) => state.user) 
+    const { loading, userRegister, error } = RegisterUser;
     const { userInfo } = useSelector((state) => state.user.userLogin)
+
 
     const postDetails = async (pics) => {
         if (
@@ -30,13 +31,12 @@ const Register = () => {
             }
             setPicMessage(null);
 
-            if (pics && pics.type === 'image/jpeg' || pics.type === 'image/png') {
+            if (pics && (pics.type === 'image/jpeg' || pics.type === 'image/png')) {
                 const data = new FormData();
                 data.append("file", pics);
 
                 try {
                     const response = await axios.post("/api/upload", data)
-                    console.log('res', response)
                     setPic(response.data.filename)
                 } catch (err) {
                     console.log(err)
@@ -51,9 +51,11 @@ const Register = () => {
         if (userInfo) {
             navigate('/login')
         }
-    }, [navigate, userInfo])
-
-    console.log("Pic", pic)
+        // if (userRegister) {
+        //     setUserId(userRegister._id)
+        // }
+        
+    }, [navigate, userInfo, userRegister])
 
 
     const handleRegister = async (e) => {
@@ -61,7 +63,6 @@ const Register = () => {
 
         let user = {name, email, password, pic}
 
-        console.log("Pic", pic)
         if (password !== confirmPassword) {
             setMessage('Passwords do not match!')
             // TESTING.......
@@ -75,7 +76,7 @@ const Register = () => {
             }, 3000);
         } 
         else {
-            registerUser(user, dispatch)
+            registerUser(user, dispatch, navigate)
         }
     }
     
@@ -107,7 +108,7 @@ const Register = () => {
 
                 {picMessage && <Alert type="error" message={picMessage}/>}
                 <div className="group">
-                    <label htmlFor='pic'>Profile Pic:</label>
+                    <label htmlFor='pic'>Profile Pic: <b>(optional)</b></label>
                     <input type="file" onChange={(e) => postDetails(e.target.files[0])}/>
                 </div>
                 <button>Sign up</button>

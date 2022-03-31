@@ -8,9 +8,13 @@ import Header from './components/Header/Header';
 import CreateNote from './Pages/createNote/CreateNote';
 import EditNote from './Pages/editNote/editNote';
 import Profile from './Pages/Profile/Profile';
+import ResetPassword from './Pages/ResetPassword/ResetPassword';
+import ForgotPassword from './Pages/forgotPassword/ForgotPassword';
+import Verification from './Pages/verification/Verification';
 
 function App() {
   const [search, setSearch] = useState("");
+  
   return (
     <div className="App">
       <Router>
@@ -18,7 +22,10 @@ function App() {
         <Routes>
           <Route path="/" element={ <Homepage />} exact />
           <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/register" element={<Register />}/>
+          <Route path="/verification" element={<Verification/>} />
+          <Route path='/forgot-password' element={<ForgotPassword/>} />
+          <Route path='/reset-password' element={<ResetPassword />}/>
           <Route path="/notes" element={<Notes />} search={search}/>
           <Route path="/createnote" element={<CreateNote />}/>
           <Route path="/notes/:id" element={<EditNote /> }/>

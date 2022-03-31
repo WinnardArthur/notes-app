@@ -1,5 +1,5 @@
 import './header.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from '../../Redux/apiCalls';
@@ -31,7 +31,17 @@ const Header = ({ setSearch }) => {
                     <Link to="/createnote" className="link">New Note</Link>
                     <div style={{cursor: 'pointer'}} onClick={handleLogout}>Logout</div>  
                     <Link to="/profile" className="link">
-                        <img src={SERVER_URL + userInfo.pic} alt={userInfo.name} className='userProfileImg'/>
+                        {
+                            userInfo.pic ===  "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg" ? 
+                                <img 
+                                    src={ "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg"} 
+                                    alt={userInfo.name} 
+                                    className='userProfileImg'
+                                /> 
+                            : 
+                                <img src={SERVER_URL + userInfo.pic} alt={userInfo.name} className='userProfileImg'/>
+                        
+                        }
                     </Link>
                     </>
                 }

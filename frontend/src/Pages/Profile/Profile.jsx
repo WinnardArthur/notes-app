@@ -56,7 +56,7 @@ const Profile = () => {
         setPicMessage(null);
 
         console.log('pics', pics)
-        if(pics && pics.type === 'image/jpeg' || pics.type === 'image/png') {
+        if(pics && (pics.type === 'image/jpeg' || pics.type === 'image/png')) {
             const data = new FormData();
             data.append("file", pics)
 

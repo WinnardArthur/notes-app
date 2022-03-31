@@ -53,7 +53,7 @@ export const loginUser = async (user, dispatch) => {
 } 
  
 // Register User
-export const registerUser = async (user, dispatch) => {
+export const registerUser = async (user, dispatch, navigate) => {
     try {
 
         dispatch(USER_REGISTER_REQUEST());
@@ -66,7 +66,7 @@ export const registerUser = async (user, dispatch) => {
 
         const { data } = await axios.post("/api/users", user, config)
         dispatch(USER_REGISTER_SUCCESS(data))
-        window.location.replace('/login');
+        navigate('/verification');
         
     } catch (error) {
         dispatch(USER_REGISTER_FAIL(
@@ -201,7 +201,7 @@ export const deleteNote = async (userInfo, id, dispatch ) => {
 
         const { data } = await axios.delete(`/api/notes/${id}`, config)
         dispatch(NOTE_DELETE_SUCCESS(data.message))
-
+        window.onload()
     } catch (error) {
         
         const message = error.response && error.response.data.message 

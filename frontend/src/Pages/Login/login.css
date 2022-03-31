@@ -35,3 +35,10 @@
     border-radius: 5px;
     font-size: 1rem;
 }
+
+.login form .forgotPassword {
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+    margin-left: 20%;
+}

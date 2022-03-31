@@ -7,7 +7,7 @@ import ReactMarkdown from 'react-markdown';
 import { deleteNote, listNotes } from '../../Redux/apiCalls';
 
 
-const Notes = ({ search }) => {
+const Notes = () => {
   const [active, setActive] = useState(true);
 
   const dispatch = useDispatch();

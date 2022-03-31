@@ -1,7 +1,7 @@
 import { useState } from "react"; 
 import "./editNote.css";
 import ReactMarkdown from 'react-markdown';
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
@@ -11,20 +11,18 @@ import Alert from "../../components/Alert/Alert";
 const EditNote = () => {
 
     const dispatch = useDispatch();
-    const history = useNavigate();
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const [category, setCategory] = useState('');
     const [date, setDate] = useState("");
 
-    const navigate = useNavigate();
 
     const { id } = useParams();
 
     const { userInfo } = useSelector((state) => state.user.userLogin)
     const noteUpdate = useSelector((state) => state.note)
 
-    const { loading, note, error }= noteUpdate;
+    const { loading, error }= noteUpdate;
 
     const config = {
         headers: {
