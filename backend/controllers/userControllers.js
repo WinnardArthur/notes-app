@@ -161,7 +161,7 @@ const forgotPassword = async (req, res) => {
         from: 'security@gmail.com',
         to: user.email,
         subject: "Password Reset",
-        html: generatePasswordResetTemplate(`http://localhost:3000/reset-password?token=${randomBytes}&id=${user._id}`)
+        html: generatePasswordResetTemplate(`https://notes-app-n5dd.onrender.com/reset-password?token=${randomBytes}&id=${user._id}`)
     })
 
     res.json({success: true, message: 'Password reset link is sent to your email.'})
