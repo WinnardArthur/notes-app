@@ -6,6 +6,8 @@ import { updateUser } from '../../Redux/apiCalls';
 import Alert from '../../components/Alert/Alert';
 import axios from 'axios';
 
+const SERVER_URL = process.env.NODE_ENV === 'production' ? 'https://notes-app-n5dd.onrender.com/uploads/' : 'http://localhost:5000/uploads/'
+
 const Profile = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -77,41 +79,49 @@ const Profile = () => {
             {error && active && <Alert type="error" message={error} />}
             {message && active && <Alert type="error" message={message}/>}
             {success && <Alert type="success" message="Profile updated successfully."/>}
-            <form onSubmit = {handleUpdateUser}>
-                <div className="group">
-                    <label htmlFor='name'>Username</label>
-                    <input 
-                        type="text" 
-                        onChange={(e) => setName(e.target.value)}
-                        value={name}    
-                    />
+            
+            <div className='profile'>
+                <form onSubmit = {handleUpdateUser}>
+                    <div className="group">
+                        <label htmlFor='name'>Username</label>
+                        <input 
+                            type="text" 
+                            onChange={(e) => setName(e.target.value)}
+                            value={name}    
+                        />
+                    </div>
+                    <div className="group">
+                        <label htmlFor='email'>Email:</label>
+                        <input 
+                            type="email" 
+                            onChange={(e) => setEmail(e.target.value)}
+                            value={email}
+                        />
+                    </div>
+                    <div className="group">
+                        <label htmlFor='password'>Password:</label>
+                        <input 
+                            type="password" 
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </div>
+                    <div className="group">
+                        <label htmlFor='confirmPassword'>Confirm Password</label>
+                        <input type="password" onChange={(e) => setConfirmPassword(e.target.value)}/>
+                    </div>
+                    {picMessage && <Alert type="error" message={picMessage}/>}
+                    <div className="group">
+                        <label htmlFor='pic'>Profile Pic:</label>
+                        <input type="file" onChange={(e) => postDetails(e.target.files[0])}/>
+                    </div>
+                    <button>Update</button>
+                </form>
+                <div>
+                    <img src={SERVER_URL + userInfo.pic} onError={e => e.target.src = "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg"} alt={userInfo.name} />
+                    <p>Profile Image</p>
                 </div>
-                <div className="group">
-                    <label htmlFor='email'>Email:</label>
-                    <input 
-                        type="email" 
-                        onChange={(e) => setEmail(e.target.value)}
-                        value={email}
-                    />
-                </div>
-                <div className="group">
-                    <label htmlFor='password'>Password:</label>
-                    <input 
-                        type="password" 
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                </div>
-                <div className="group">
-                    <label htmlFor='confirmPassword'>Confirm Password</label>
-                    <input type="password" onChange={(e) => setConfirmPassword(e.target.value)}/>
-                </div>
-                {picMessage && <Alert type="error" message={picMessage}/>}
-                <div className="group">
-                    <label htmlFor='pic'>Profile Pic:</label>
-                    <input type="file" onChange={(e) => postDetails(e.target.files[0])}/>
-                </div>
-                <button>Update</button>
-            </form>
+            </div>
+
         </div>
   )
 }

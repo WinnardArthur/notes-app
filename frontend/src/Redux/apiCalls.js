@@ -189,7 +189,7 @@ export const updateNote = async (userInfo, id, note, dispatch) => {
 }
 
 // Delete Note
-export const deleteNote = async (userInfo, id, dispatch ) => {
+export const deleteNote = async (userInfo, id, dispatch, setActive) => {
     try {
         dispatch(NOTE_DELETE_REQUEST())
 
@@ -200,8 +200,11 @@ export const deleteNote = async (userInfo, id, dispatch ) => {
         }
 
         const { data } = await axios.delete(`/api/notes/${id}`, config)
+        
+        data && setActive(true);
         dispatch(NOTE_DELETE_SUCCESS(data.message))
-        window.onload()
+
+
     } catch (error) {
         
         const message = error.response && error.response.data.message 

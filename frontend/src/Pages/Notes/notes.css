@@ -18,7 +18,7 @@
 .note {
     position: relative;
     width: 80%;
-    padding: 1rem;
+    padding: 1rem 3rem;
     margin: 0 auto 2rem;
     border: 5px;
     box-shadow: 0 0 10px -5px rgba(0, 0, 0, .5);

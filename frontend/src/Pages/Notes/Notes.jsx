@@ -8,7 +8,7 @@ import { deleteNote, listNotes } from '../../Redux/apiCalls';
 
 
 const Notes = () => {
-  const [active, setActive] = useState(true);
+  const [active, setActive] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -34,11 +34,12 @@ const Notes = () => {
                 
   const deleteHandler = (id) => {
     if (window.confirm("Are you sure?")) {
-      deleteNote(userInfo, id, dispatch)
+      deleteNote(userInfo, id, dispatch, setActive)
     }
     setTimeout(() => {
       setActive(false);
     }, 3000)
+
   }
 
   return (

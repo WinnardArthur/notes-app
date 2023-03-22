@@ -1,4 +1,5 @@
 const nodemailer = require('nodemailer');
+require('dotenv').config();
 
 exports.generateOTP = () => {
     let otp = '';
@@ -11,10 +12,10 @@ exports.generateOTP = () => {
     return otp;
 }
 
+
 exports.mailTransport = () => {
     let transport = nodemailer.createTransport({
-        host: "smtp.mailtrap.io",
-        port: 2525,
+        service: "gmail",
         auth: {
             user: process.env.MAILTRAP_USERNAME,
             pass: process.env.MAILTRAP_PASSWORD
@@ -23,6 +24,7 @@ exports.mailTransport = () => {
 
     return transport
 }
+
 
 exports.generateEmailTemplate = code => {
     return `

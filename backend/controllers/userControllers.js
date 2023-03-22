@@ -6,7 +6,9 @@ const VerificationToken = require('../model/verificationToken');
 const { isValidObjectId } = require('mongoose');
 const ResetToken = require('../model/resetToken');
 const { createRandomBytes } = require('../utils/helper');
+require('dotenv').config();
 
+const baseURL = process.env.NODE_ENV === 'production' ? 'https://notes-app-n5dd.onrender.com' : 'http://localhost:3000';
 
 const registerUser = asyncHandler( async (req, res) => {
     const { name, email, password, pic } = req.body;
@@ -14,8 +16,8 @@ const registerUser = asyncHandler( async (req, res) => {
     const userExists = await User.findOne({email});
 
     if (userExists) {
-        res.status(400)  
-        throw new Error("User Already Exists oo");
+        res.status(400)     
+        throw new Error("User Already Exists");
     }
 
     const newUser = new User({
@@ -161,7 +163,7 @@ const forgotPassword = async (req, res) => {
         from: 'security@gmail.com',
         to: user.email,
         subject: "Password Reset",
-        html: generatePasswordResetTemplate(`https://notes-app-n5dd.onrender.com/reset-password?token=${randomBytes}&id=${user._id}`)
+        html: generatePasswordResetTemplate(`${baseURL}/reset-password?token=${randomBytes}&id=${user._id}`)
     })
 
     res.json({success: true, message: 'Password reset link is sent to your email.'})

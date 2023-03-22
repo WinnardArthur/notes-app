@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logoutUser } from '../../Redux/apiCalls';
 
 const Header = ({ setSearch }) => {
-    const SERVER_URL = 'https://notes-app-n5dd.onrender.com/uploads/'
+    const SERVER_URL = process.env.NODE_ENV === 'production' ? 'https://notes-app-n5dd.onrender.com/uploads/' : 'http://localhost:5000/uploads/'
     const dispatch = useDispatch();
 
     const { userLogin } = useSelector(state => state.user);
